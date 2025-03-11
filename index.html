@@ -7,25 +7,24 @@
     <title>Photomaton</title>
 </head>
 <body>
-    <h1>Camera App</h1>
+    <h1 class="title">Flash Me</h1>
 
-    <div>
+    <div class="container">
         <div class="video-options">
             <label for="camera-selection">Select camera</label>
-            <select id="camera-selection">
+            <select id="camera-selection"></select>
                 <option value="">Loading available cameras...</option>
             </select>
         </div>
 
         <div class="controls">
-            <button title="Play">Play</button>
-            <button title="Pause" class="hide">Pause</button>
-            <button title="ScreenShot" class="hide">Screenshot</button>
+            <button title="Play" class="control-button play-button">Play</button>
+            <button title="Pause" class="control-button pause-button hide">Pause</button>
+            <button title="ScreenShot" class="control-button screenshot-button hide">Screenshot</button>
         </div>
 
         <video autoplay class="webcam-output"></video>
         <canvas class="hide"></canvas>
-
 
         <img class="screenshot-image" alt="">
     </div>

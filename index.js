@@ -43,12 +43,18 @@ const constraints = {
  * @returns {Promise<void>}
  */
 const getCameraSelection = async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter(device => device.kind === 'videoinput');
     const options = videoDevices.map(videoDevice => {
         return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
     });
     cameraOptions.innerHTML = options.join('');
+
+
+
+    console.log(videoDevices);
 };
 
 play.onclick = () => {
@@ -107,9 +113,42 @@ const doScreenshot = () => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
-    screenshotImage.src = canvas.toDataURL('image/webp');
-    screenshotImage.classList.remove('hide');
+    savePhoto();
 };
+
+/**
+ * Save photo to file in output directory in format DDMMYYYY_HHMMSS.png
+ */
+const savePhoto = async () => {
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+
+    //Generate file name with current date and time
+    const now = new Date();
+    const fileName = `${now.getDate().toString().padStart(2, '0')}${(now.getMonth() + 1).toString().padStart(2, '0')}${now.getFullYear()}_${now.getHours().toString().padStart(2, '0')}${now.getMinutes().toString().padStart(2, '0')}${now.getSeconds().toString().padStart(2, '0')}.png`;
+
+    try {
+        // Request explorer to save file
+        const options = {
+            types: [{
+                description: 'PNG Files',
+                accept: { 'image/png': ['.png'] }
+            }],
+            suggestedName: fileName
+        };
+
+        const handle = await window.showSaveFilePicker(options);
+        const writable = await handle.createWritable();
+
+        await writable.write(blob);
+        await writable.close();
+        console.log('Image saved successfully');
+    } catch (error) {
+        console.error('Error saving image:', error);
+    }
+};
+
+
+
 
 pause.onclick = pauseStream;
 screenshot.onclick = doScreenshot;
