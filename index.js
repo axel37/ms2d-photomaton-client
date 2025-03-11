@@ -5,25 +5,6 @@ const mediaSupport = 'mediaDevices' in navigator && 'getUserMedia' in navigator.
 if (!mediaSupport) {
     console.warn('User media not supported');
 }
-navigator.mediaDevices.getUserMedia({video: true})
-
-//// Step 1 : Select an input device
-// Source : https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API
-navigator.mediaDevices.enumerateDevices().then((devices) => {
-    console.log(devices)
-    devices.forEach((device) => {
-        const menu = document.getElementById("input-devices");
-        if (device.kind === "videoinput") {
-            console.log(device)
-            const item = document.createElement("option");
-            item.textContent = device.label;
-            item.value = device.deviceId;
-            menu.appendChild(item);
-        }
-    });
-});
-
-
 
 //// Step 2 : Select an output directory
 
@@ -39,6 +20,7 @@ let streamStarted = false;
 
 const [play, pause, screenshot] = buttons;
 
+/** Video resolution to request */
 const constraints = {
     video: {
         width: {
@@ -54,6 +36,12 @@ const constraints = {
     }
 };
 
+/**
+ * Get media devices and return a list of options to be used in a <select>
+ *     Will ask for permission if not done yet.
+ *     TODO : Handle permission denial
+ * @returns {Promise<void>}
+ */
 const getCameraSelection = async () => {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter(device => device.kind === 'videoinput');
@@ -66,8 +54,8 @@ const getCameraSelection = async () => {
 play.onclick = () => {
     if (streamStarted) {
         video.play();
-        play.classList.add('d-none');
-        pause.classList.remove('d-none');
+        play.classList.add('hide');
+        pause.classList.remove('hide');
         return;
     }
     if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
@@ -88,9 +76,9 @@ const startStream = async (constraints) => {
 
 const handleStream = (stream) => {
     video.srcObject = stream;
-    play.classList.add('d-none');
-    pause.classList.remove('d-none');
-    screenshot.classList.remove('d-none');
+    play.classList.add('hide');
+    pause.classList.remove('hide');
+    screenshot.classList.remove('hide');
     streamStarted = true;
 };
 
@@ -106,10 +94,13 @@ cameraOptions.onchange = () => {
     startStream(updatedConstraints);
 };
 
+/**
+ * Pause video preview and show play button
+ */
 const pauseStream = () => {
     video.pause();
-    play.classList.remove('d-none');
-    pause.classList.add('d-none');
+    play.classList.remove('hide');
+    pause.classList.add('hide');
 };
 
 const doScreenshot = () => {
@@ -117,7 +108,7 @@ const doScreenshot = () => {
     canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
     screenshotImage.src = canvas.toDataURL('image/webp');
-    screenshotImage.classList.remove('d-none');
+    screenshotImage.classList.remove('hide');
 };
 
 pause.onclick = pauseStream;

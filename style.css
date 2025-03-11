@@ -1,0 +1,15 @@
+.webcam-output {
+    max-width: 100%;
+}
+
+.screenshot-image {
+    max-width: 50%;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: revert;
+}
