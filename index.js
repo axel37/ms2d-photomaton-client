@@ -28,6 +28,7 @@ navigator.mediaDevices.enumerateDevices().then((devices) => {
 //// Step 2 : Select an output directory
 
 //// Step 3 : Display photo app (take photo, save photo, display photo)
+// Source : https://www.digitalocean.com/community/tutorials/front-and-rear-camera-access-with-javascripts-getusermedia
 const controls = document.querySelector('.controls');
 const cameraOptions = document.querySelector('.video-options>select');
 const video = document.querySelector('video');
@@ -94,3 +95,30 @@ const handleStream = (stream) => {
 };
 
 getCameraSelection();
+
+cameraOptions.onchange = () => {
+    const updatedConstraints = {
+        ...constraints,
+        deviceId: {
+            exact: cameraOptions.value
+        }
+    };
+    startStream(updatedConstraints);
+};
+
+const pauseStream = () => {
+    video.pause();
+    play.classList.remove('d-none');
+    pause.classList.add('d-none');
+};
+
+const doScreenshot = () => {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+    screenshotImage.src = canvas.toDataURL('image/webp');
+    screenshotImage.classList.remove('d-none');
+};
+
+pause.onclick = pauseStream;
+screenshot.onclick = doScreenshot;
