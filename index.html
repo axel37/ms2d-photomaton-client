@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Photomaton</title>
+</head>
+<body>
+    <h1>Camera App</h1>
+
+    <label for="input-devices">Choose a camera :</label>
+    <select id="input-devices"></select>
+
+
+    <div>
+        <video autoplay></video>
+        <canvas class="d-none"></canvas>
+
+
+        <div class="video-options">
+            <select name="" id="">
+                <option value="">Select camera</option>
+            </select>
+        </div>
+
+        <img class="screenshot-image d-none" alt="">
+
+        <div class="controls">
+            <button title="Play">Play</button>
+            <button title="Pause">Pause</button>
+            <button title="ScreenShot">Screenshot</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
