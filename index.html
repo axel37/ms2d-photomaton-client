@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,26 +7,33 @@
     <title>Photomaton</title>
 </head>
 <body>
-    <h1 class="title">Flash Me</h1>
 
     <div class="container">
+        <h1>Flash Me !</h1>
+
+        <!-- Sélecteur de caméra -->
         <div class="video-options">
-            <label for="camera-selection">Select camera</label>
-            <select id="camera-selection"></select>
-                <option value="">Loading available cameras...</option>
+            <label for="camera-selection">Sélectionner une caméra</label>
+            <select id="camera-selection">
+                <option value="">Chargement des caméras...</option>
             </select>
         </div>
 
-        <div class="controls">
-            <button title="Play" class="control-button play-button">Play</button>
-            <button title="Pause" class="control-button pause-button hide">Pause</button>
-            <button title="ScreenShot" class="control-button screenshot-button hide">Screenshot</button>
+        <!-- Aperçu vidéo -->
+        <div class="photo-preview">
+            <video autoplay class="webcam-output"></video>
         </div>
 
-        <video autoplay class="webcam-output"></video>
+        <!-- Boutons de contrôle -->
+        <div class="controls">
+            <button id="play-btn" title="Play">▶️</button>
+            <button id="pause-btn" class="hide" title="Pause">⏸</button>
+            <button id="screenshot-btn" class="hide" title="Screenshot">📸</button>
+        </div>
         <canvas class="hide"></canvas>
 
-        <img class="screenshot-image" alt="">
+
+        <img class="screenshot-image hide" alt="">
     </div>
 
     <script src="index.js"></script>

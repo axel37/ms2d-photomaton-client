@@ -1,108 +1,109 @@
+/* Reset de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Arrière-plan avec dégradé */
 body {
-    background-color: #fff5e6; /* Couleur de fond plus claire */
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-}
-
-.title {
-    color: #ff8c00; /* Couleur orange pour le titre */
-    text-align: center;
-    font-size: 3em;
-    margin-top: 20px;
-}
-
-.container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    height: 100vh;
+    background: linear-gradient(to bottom, #FF9966, #FFCC66);
 }
 
-.video-options, .controls {
-    margin-bottom: 20px;
-}
-
-.control-button {
-    background-color: #ff8c00; /* Couleur orange pour les boutons */
-    border: none;
-    color: white;
-    padding: 15px 32px;
+/* Conteneur principal */
+.container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    background: #F0F0F0;
+    border-radius: 20px;
+    padding: 20px;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.control-button:hover {
-    background-color: #ff4500; /* Couleur orange foncé pour le survol */
+/* Titre */
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
 }
 
-.play-button::before {
-    content: '▶️ ';
+/* Sélecteur de caméra */
+.video-options {
+    margin: 10px 0;
 }
 
-.pause-button::before {
-    content: '⏸️ ';
+.video-options label {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
 }
 
-.screenshot-button::before {
-    content: '📸 ';
+#camera-selection {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Zone d'affichage vidéo */
+.photo-preview {
+    width: 100%;
+    height: 300px;
+    background: #D9D9D9;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .webcam-output {
-    border: 5px solid #ff8c00; /* Bordure orange pour la vidéo */
-    border-radius: 12px;
+    max-width: 100%;
+    border-radius: 10px;
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .title {
-        font-size: 2.5em;
-    }
-
-    .control-button {
-        padding: 10px 20px;
-        font-size: 14px;
-    }
-
-    .container {
-        width: 90%;
-    }
-
-    .video-options, .controls {
-        width: 100%;
-        text-align: center;
-    }
-
-    .webcam-output {
-        width: 100%;
-        height: auto;
-    }
+/* Boutons de contrôle */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
 }
 
-@media (max-width: 480px) {
-    .title {
-        font-size: 2em;
-    }
+.controls button {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 16px;
+}
 
-    .control-button {
-        padding: 8px 16px;
-        font-size: 12px;
-    }
+.controls button:hover {
+    background: #ddd;
+}
 
-    .container {
-        width: 100%;
-    }
+/* Screenshot */
+.screenshot-image {
+    max-width: 100%;
+    border-radius: 10px;
+}
 
-    .video-options, .controls {
-        width: 100%;
-        text-align: center;
-    }
-
-    .webcam-output {
-        width: 100%;
-        height: auto;
-    }
+/* Cache */
+.hide {
+    display: none;
+}
+.show {
+    display: revert;
 }
