@@ -43,18 +43,12 @@ const constraints = {
  * @returns {Promise<void>}
  */
 const getCameraSelection = async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter(device => device.kind === 'videoinput');
     const options = videoDevices.map(videoDevice => {
         return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
     });
     cameraOptions.innerHTML = options.join('');
-
-
-
-    console.log(videoDevices);
 };
 
 play.onclick = () => {
@@ -113,6 +107,8 @@ const doScreenshot = () => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
+    screenshotImage.src = canvas.toDataURL('image/webp');
+    screenshotImage.classList.remove('hide');
     savePhoto();
 };
 
