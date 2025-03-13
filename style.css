@@ -1,109 +1,109 @@
 /* Reset de base */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 /* Arrière-plan avec dégradé */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom, #FF9966, #FFCC66);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #ff9966, #ffcc66);
 }
 
 /* Conteneur principal */
 .container {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    background: #F0F0F0;
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  background: #f0f0f0;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Titre */
 h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 /* Sélecteur de caméra */
 .video-options {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .video-options label {
-    font-size: 14px;
-    color: #333;
-    font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
 }
 
 #camera-selection {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 /* Zone d'affichage vidéo */
 .photo-preview {
-    width: 100%;
-    height: 300px;
-    background: #D9D9D9;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  width: 100%;
+  height: 300px;
+  background: #d9d9d9;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .webcam-output {
-    max-width: 100%;
-    border-radius: 10px;
+  max-width: 100%;
+  border-radius: 10px;
 }
 
 /* Boutons de contrôle */
 .controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
 }
 
 .controls button {
-    background: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    font-size: 16px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .controls button:hover {
-    background: #ddd;
+  background: #ddd;
 }
 
 /* Screenshot */
 .screenshot-image {
-    max-width: 100%;
-    border-radius: 10px;
+  max-width: 100%;
+  border-radius: 10px;
 }
 
 /* Cache */
 .hide {
-    display: none;
+  display: none;
 }
 .show {
-    display: revert;
+  display: revert;
 }

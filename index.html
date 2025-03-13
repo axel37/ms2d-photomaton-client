@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
     <title>Photomaton</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <h1>Flash Me !</h1>
+      <h1>Flash Me !</h1>
 
-        <!-- Sélecteur de caméra -->
-        <div class="video-options">
-            <label for="camera-selection">Sélectionner une caméra</label>
-            <select id="camera-selection">
-                <option value="">Chargement des caméras...</option>
-            </select>
-        </div>
+      <!-- Sélecteur de caméra -->
+      <div class="video-options">
+        <label for="camera-selection">Sélectionner une caméra</label>
+        <select id="camera-selection">
+          <option value="">Chargement des caméras...</option>
+        </select>
+      </div>
 
-        <!-- Aperçu vidéo -->
-        <div class="photo-preview">
-            <video autoplay class="webcam-output"></video>
-        </div>
+      <!-- Aperçu vidéo -->
+      <div class="photo-preview">
+        <video autoplay class="webcam-output"></video>
+      </div>
 
-        <!-- Boutons de contrôle -->
-        <div class="controls">
-            <button id="play-btn" title="Play">▶️</button>
-            <button id="pause-btn" class="hide" title="Pause">⏸</button>
-            <button id="screenshot-btn" class="hide" title="Screenshot">📸</button>
-        </div>
-        <canvas class="hide"></canvas>
+      <!-- Boutons de contrôle -->
+      <div class="controls">
+        <button id="play-btn" title="Play">▶️</button>
+        <button id="pause-btn" class="hide" title="Pause">⏸</button>
+        <button id="screenshot-btn" class="hide" title="Screenshot">📸</button>
+      </div>
+      <canvas class="hide"></canvas>
 
+      <img class="screenshot-image hide" alt="" />
 
-        <img class="screenshot-image hide" alt="">
+      <input type="text" id="emailList" placeholder="Enter email addresses separated by commas">
+      <button id="add-email-btn">Add Email</button>
+      <ul id="email-list"></ul>
     </div>
 
     <script src="index.js"></script>
-</body>
+  </body>
 </html>
