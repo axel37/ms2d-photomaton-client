@@ -125,13 +125,52 @@ const pauseStream = () => {
   pause.classList.add("hide");
 };
 
-const doScreenshot = () => {
+const sendPicture = async (emails, fileName) => {
+    const formData = new FormData();
+    formData.append('emails', emails);
+    formData.append('pictures', fileName);
+  
+    try {
+        const response = await fetch('http://localhost:3000/send-picture', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json',
+            },
+          });
+  
+      if (response.ok) {
+        console.log('Picture sent successfully');
+      } else {
+        const errorText = await response.text();
+        console.error('Failed to send picture:', response.status, response.statusText, errorText);
+      }
+    } catch (error) {
+      console.error('Error sending picture:', error);
+    }
+  };
+
+const doScreenshot = async () => {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
   canvas.getContext("2d").drawImage(video, 0, 0);
   screenshotImage.src = canvas.toDataURL("image/webp");
   screenshotImage.classList.remove("hide");
-  savePhoto();
+
+ let fileName = await savePhoto();
+    fileName = fileName.slice(0, -4);
+
+  const blob = await new Promise((resolve) =>
+    canvas.toBlob(resolve, "image/png")
+  );
+
+  const emailList = document.getElementById('email-list');
+  const emails = Array.from(emailList.children).map(li => li.textContent);
+
+    console.log(emails);
+    console.log(fileName);
+
+  await sendPicture(emails, fileName);
 };
 
 const savePhoto = async () => {
@@ -171,25 +210,25 @@ const savePhoto = async () => {
     await writable.write(blob);
     await writable.close();
     console.log("Image saved successfully");
+    return fileName;
   } catch (error) {
     console.error("Error saving image:", error);
   }
 };
 
-
 document.getElementById('add-email-btn').addEventListener('click', function() {
-    const emailInput = document.getElementById('emailList');
-    const emailList = document.getElementById('email-list');
-    const emails = emailInput.value.split(',').map(email => email.trim()).filter(email => email);
+  const emailInput = document.getElementById('emailList');
+  const emailList = document.getElementById('email-list');
+  const emails = emailInput.value.split(',').map(email => email.trim()).filter(email => email);
 
-    emails.forEach(email => {
-      const li = document.createElement('li');
-      li.textContent = email;
-      emailList.appendChild(li);
-    });
-
-    emailInput.value = '';
+  emails.forEach(email => {
+    const li = document.createElement('li');
+    li.textContent = email;
+    emailList.appendChild(li);
   });
+
+  emailInput.value = '';
+});
 
 pause.onclick = pauseStream;
 screenshot.onclick = doScreenshot;
