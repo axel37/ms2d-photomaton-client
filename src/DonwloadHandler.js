@@ -35,10 +35,12 @@ export default class DonwloadHandler {
     /**
      * Downloading for browsers which do not support showFilePicker
      * TODO : This does not force the selection of a directory.
+     * TODO : We have no way to wait for the download to finish.
      *
      * Source : https://stackoverflow.com/a/79139546
      */
     static async downloadOnFirefox(blob, filename) {
+        console.log(`showSaveFilePicker is not available, using workaround method for file ${filename}`);
         const downloadelem = document.createElement("a");
         const url = URL.createObjectURL(blob);
         document.body.appendChild(downloadelem);
@@ -47,6 +49,12 @@ export default class DonwloadHandler {
         downloadelem.click();
         downloadelem.remove();
         window.URL.revokeObjectURL(url);
+        // TODO : REMOVE THIS once sending emails is de-correlated from saving the picture
+        await this.sleep(6000);
         return filename;
+    }
+
+    static async sleep(miliseconds) {
+        return new Promise(resolve => setTimeout(resolve, miliseconds)); // 3 sec
     }
 }

@@ -1,4 +1,5 @@
 import DonwloadHandler from "./src/DonwloadHandler.js";
+import PictureSender from "./src/PictureSender.js";
 
 //Check feature support and request permission
 // TODO : Handle permission not granted
@@ -124,31 +125,6 @@ const pauseStream = () => {
   pause.classList.add("hide");
 };
 
-const sendPicture = async (emails, fileName) => {
-    const formData = new FormData();
-    formData.append('emails', emails);
-    formData.append('pictures', fileName);
-  
-    try {
-        const response = await fetch('http://localhost:3000/send-picture', {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'Accept': 'application/json',
-            },
-          });
-  
-      if (response.ok) {
-        console.log('Picture sent successfully');
-      } else {
-        const errorText = await response.text();
-        console.error('Failed to send picture:', response.status, response.statusText, errorText);
-      }
-    } catch (error) {
-      console.error('Error sending picture:', error);
-    }
-  };
-
 const doScreenshot = async () => {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
@@ -169,7 +145,7 @@ const doScreenshot = async () => {
     console.log(emails);
     console.log(fileName);
 
-  await sendPicture(emails, fileName);
+  await PictureSender.sendPicture(emails, fileName);
 };
 
 const savePhoto = async () => {
