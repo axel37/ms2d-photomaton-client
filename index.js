@@ -1,5 +1,6 @@
 import DonwloadHandler from "./src/DonwloadHandler.js";
-//// Step 0 : Check feature support and request permission
+
+//Check feature support and request permission
 // TODO : Handle permission not granted
 const mediaSupport =
   "mediaDevices" in navigator && "getUserMedia" in navigator.mediaDevices;
@@ -8,9 +9,6 @@ if (!mediaSupport) {
   console.warn("User media not supported");
 }
 
-//// Step 2 : Select an output directory
-
-//// Step 3 : Display photo app (take photo, save photo, display photo)
 // Source : https://www.digitalocean.com/community/tutorials/front-and-rear-camera-access-with-javascripts-getusermedia
 const controls = document.querySelector(".controls");
 const cameraOptions = document.querySelector(".video-options>select");
