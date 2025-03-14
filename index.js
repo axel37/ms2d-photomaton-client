@@ -192,7 +192,7 @@ const savePhoto = async () => {
     .padStart(2, "0")}.jpg`;
 
   try {
-    return await DonwloadHandler.downloadOnChromium(blob, fileName);
+    return await DonwloadHandler.downloadPicture(blob, fileName);
   } catch (error) {
     console.error("Error saving image:", error);
   }
