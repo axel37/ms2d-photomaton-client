@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/favicon.ico" />
     <title>Photomaton</title>
   </head>
   <body>
@@ -26,15 +27,20 @@
       <!-- Boutons de contrôle -->
       <div class="controls">
         <button id="play-btn" title="Play">▶️</button>
+        <button id="screenshot-btn" class="hide" title="Screenshot"></button>
         <button id="pause-btn" class="hide" title="Pause">⏸</button>
-        <button id="screenshot-btn" class="hide" title="Screenshot">📸</button>
       </div>
       <canvas class="hide"></canvas>
 
       <img class="screenshot-image hide" alt="" />
 
-      <input type="text" id="emailList" placeholder="Enter email addresses separated by commas">
-      <button id="add-email-btn">Add Email</button>
+      <!-- Champ de saisie des emails + bouton -->
+      <div class="email-input">
+        <input type="text" id="emailList" placeholder="johnni@cefim.eu">
+        <button id="add-email-btn">Ajouter Email</button>
+      </div>
+
+      <!-- Liste des emails sous forme de badges -->
       <ul id="email-list"></ul>
     </div>
 
