@@ -19,7 +19,7 @@ const screenshotImage = document.querySelector("img");
 const buttons = [...controls.querySelectorAll("button")];
 let streamStarted = false;
 
-const [play, pause, screenshot] = buttons;
+const [play, screenshot, pause] = buttons;
 
 /** Video resolution to request */
 const constraints = {
