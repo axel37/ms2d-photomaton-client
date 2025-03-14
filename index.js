@@ -1,3 +1,4 @@
+import DonwloadHandler from "./src/DonwloadHandler.js";
 //// Step 0 : Check feature support and request permission
 // TODO : Handle permission not granted
 const mediaSupport =
@@ -193,24 +194,7 @@ const savePhoto = async () => {
     .padStart(2, "0")}.jpg`;
 
   try {
-    // Request explorer to save file
-    const options = {
-      types: [
-        {
-          description: "JPG Files",
-          accept: { "image/jpg": [".jpg"] },
-        },
-      ],
-      suggestedName: fileName,
-    };
-
-    const handle = await window.showSaveFilePicker(options);
-    const writable = await handle.createWritable();
-
-    await writable.write(blob);
-    await writable.close();
-    console.log("Image saved successfully");
-    return fileName;
+    return await DonwloadHandler.downloadOnChromium(blob, fileName);
   } catch (error) {
     console.error("Error saving image:", error);
   }
