@@ -1,4 +1,4 @@
-export default class EmailHandler {
+export default class ContactFormHandler {
     static getEmailsFromList(emailListId) {
       const emailList = document.getElementById(emailListId);
       return Array.from(emailList.children).map(li => li.textContent);

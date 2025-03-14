@@ -1,3 +1,23 @@
+import ContactFormHandler from "../ContactFormHandler.js";
+import PictureSender from "../PictureSender.js";
+
+const onAddEmailClicked = () => {
+    console.log("Add email button was clicked")
+    ContactFormHandler.addEmails("emailList", "email-list");
+}
+
+const onSendEmailClicked = () => {
+    console.log("Send email button was clicked")
+    doSend();
+}
+
+const addEmail = document.querySelector("#add-email-btn");
+const sendPicture = document.querySelector("#send-email");
+
+addEmail.addEventListener("click", onAddEmailClicked);
+sendPicture.addEventListener("click", onSendEmailClicked);
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("image-email-form");
   
@@ -17,3 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     });
   });
+
+const doSend = async () => {
+    const emails = ContactFormHandler.getEmailsFromList("email-list");
+    const fileName = document.getElementById("image-name").value;
+
+    console.log(emails);
+    console.log(fileName);
+
+    await PictureSender.sendPicture(emails, fileName);
+}

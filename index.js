@@ -1,6 +1,4 @@
 import DonwloadHandler from "./src/DonwloadHandler.js";
-import PictureSender from "./src/PictureSender.js";
-import EmailHandler from "./src/EmailHandler.js";
 
 //Check feature support and request permission
 // TODO : Handle permission not granted
@@ -133,24 +131,12 @@ const doScreenshot = async () => {
   screenshotImage.src = canvas.toDataURL("image/webp");
   screenshotImage.classList.remove("hide");
 
-  screenshotImage.onclick = () => {
-    //ouvrir la page page-mail.html
-    window.open("src/page/page-mail.html");
-  };
-
   let fileName = await savePhoto();
   fileName = fileName.slice(0, -4);
 
   const blob = await new Promise((resolve) =>
     canvas.toBlob(resolve, "image/png")
   );
-
-  const emails = EmailHandler.getEmailsFromList("email-list");
-
-  console.log(emails);
-  console.log(fileName);
-
-  await PictureSender.sendPicture(emails, fileName);
 };
 
 const savePhoto = async () => {
@@ -178,10 +164,6 @@ const savePhoto = async () => {
     console.error("Error saving image:", error);
   }
 };
-
-document.getElementById("add-email-btn").addEventListener("click", function () {
-  EmailHandler.addEmails("emailList", "email-list");
-});
 
 pause.onclick = pauseStream;
 screenshot.onclick = doScreenshot;

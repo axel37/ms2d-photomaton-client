@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Photomaton</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Flash Me !</h1>
-      <form id="image-email-form">
-        <label for="image-name">Nom de l'image :</label>
-        <input type="text" id="image-name" name="image-name" placeholder="Entrez le nom de l'image" required />
+</head>
+<body>
+<div class="container">
+    <h1>Flash Me !</h1>
+    <a href="../../index.html">Aller vers la prise de photos</a>
 
-        <label for="emails">Emails :</label>
-        <textarea id="emails" name="emails" placeholder="Entrez les emails séparés par des virgules" required></textarea>
+    <br>
 
-        <button type="submit">Envoyer</button>
-      </form>
+
+    <!-- Champ de saisie du numéro de l'image -->
+    <label for="image-name">Numéro de l'image :</label>
+    <input type="text" id="image-name" name="image-name" placeholder="Entrez le nom de l'image" required/>
+
+
+    <!-- Champ de saisie des emails -->
+    <div class="email-input">
+        <input type="text" id="emailList" placeholder="johnni@cefim.eu" aria-label="email">
+        <button id="add-email-btn">Ajouter destinataire</button>
     </div>
-  </body>
+
+    <!-- Liste des emails sous forme de badges -->
+    <p>Liste des destinataires :</p>
+    <ul id="email-list"></ul>
+
+    <button id="send-email">Envoyer</button>
+
+</div>
+<script src="page-mail.js" type="module"></script>
+
+</body>
 </html>
