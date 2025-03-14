@@ -1,5 +1,6 @@
 import DonwloadHandler from "./src/DonwloadHandler.js";
 import PictureSender from "./src/PictureSender.js";
+import EmailHandler from "./src/EmailHandler.js";
 
 //Check feature support and request permission
 // TODO : Handle permission not granted
@@ -132,18 +133,22 @@ const doScreenshot = async () => {
   screenshotImage.src = canvas.toDataURL("image/webp");
   screenshotImage.classList.remove("hide");
 
- let fileName = await savePhoto();
-    fileName = fileName.slice(0, -4);
+  screenshotImage.onclick = () => {
+    //ouvrir la page page-mail.html
+    window.open("src/page/page-mail.html");
+  };
+
+  let fileName = await savePhoto();
+  fileName = fileName.slice(0, -4);
 
   const blob = await new Promise((resolve) =>
     canvas.toBlob(resolve, "image/png")
   );
 
-  const emailList = document.getElementById('email-list');
-  const emails = Array.from(emailList.children).map(li => li.textContent);
+  const emails = EmailHandler.getEmailsFromList("email-list");
 
-    console.log(emails);
-    console.log(fileName);
+  console.log(emails);
+  console.log(fileName);
 
   await PictureSender.sendPicture(emails, fileName);
 };
@@ -174,18 +179,8 @@ const savePhoto = async () => {
   }
 };
 
-document.getElementById('add-email-btn').addEventListener('click', function() {
-  const emailInput = document.getElementById('emailList');
-  const emailList = document.getElementById('email-list');
-  const emails = emailInput.value.split(',').map(email => email.trim()).filter(email => email);
-
-  emails.forEach(email => {
-    const li = document.createElement('li');
-    li.textContent = email;
-    emailList.appendChild(li);
-  });
-
-  emailInput.value = '';
+document.getElementById("add-email-btn").addEventListener("click", function () {
+  EmailHandler.addEmails("emailList", "email-list");
 });
 
 pause.onclick = pauseStream;
