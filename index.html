@@ -13,7 +13,7 @@
 
       <!-- Sélecteur de caméra -->
       <div class="video-options">
-        <!-- <label for="camera-selection">Sélectionner une caméra</label> -->
+        <label for="camera-selection">Sélectionner une caméra</label>
         <select id="camera-selection">
           <option value="">Chargement des caméras...</option>
         </select>
@@ -34,11 +34,14 @@
 
       <img class="screenshot-image hide" alt="" />
 
+      <!-- Champ de saisie des emails + bouton -->
       <div class="email-input">
-      <input type="text" id="emailList" placeholder="Enter email addresses separated by commas">
-      <button id="add-email-btn">Add Email</button>
-      <ul id="email-list"></ul>
+        <input type="text" id="emailList" placeholder="Enter email addresses separated by commas">
+        <button id="add-email-btn">Add Email</button>
       </div>
+
+      <!-- Liste des emails sous forme de badges -->
+      <ul id="email-list"></ul>
     </div>
 
     <script src="index.js"></script>
