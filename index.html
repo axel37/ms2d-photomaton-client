@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
+    <link href="print.css" media="print" rel="stylesheet" />
     <link rel="icon" href="assets/favicon.ico" />
+
     <title>Photomaton</title>
   </head>
   <body>
@@ -29,6 +31,8 @@
         <button id="play-btn" title="Play">▶️</button>
         <button id="screenshot-btn" class="hide" title="Screenshot"></button>
         <button id="pause-btn" class="hide" title="Pause">⏸</button>
+        <button id="print-photo-btn" title="Print">🖨️</button>
+        
       </div>
       <canvas class="hide"></canvas>
 
@@ -38,5 +42,7 @@
     </div>
 
     <script src="index.js" type="module"></script>
+    <script src="print.js"></script>
+    
   </body>
 </html>
